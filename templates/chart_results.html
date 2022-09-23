@@ -1,0 +1,231 @@
+{% extends "layout.html" %}
+
+{% block body%}
+
+<div id="charts">
+    {% for js_data in chart_list %}
+
+    <div id="results_container{{ loop.index }}">
+
+        Chart name:
+        <span class="user_filename_span" id="chart_name_span{{ loop.index }}"></span>
+
+        <div class="charts_wrapper">
+            <div class="chart_holder">
+                <h1 class="ChartHeading">Individual X chart</h1>
+                <canvas id="MyChart{{ loop.index }}-1"></canvas>
+
+                <div class="range_box">
+                    <div class="input_range_box">
+                        <label for="years_range_min">From: </label>
+                        <input type="number"
+                               id="years_range_min"
+                               value="1990"
+                               min="1990"
+                               max="2019"
+                               step="1">
+                    </div>
+
+                    <div class="input_range_box">
+                        <label for="years_range_min">To: </label>
+                        <input type="number"
+                               id="years_range_max"
+                               value="2019"
+                               min="1990"
+                               max="2019"
+                               step="1">
+                    </div>
+
+                    <button type="submit" id="period_range_button">apply period</button>
+                </div>
+
+                <div id="add_sigma_buts{{ loop.index }}-1"></div>
+
+                <div class="histogram_norm_dist_block" style="width:700px">
+                    <canvas id="MyHistogram{{ loop.index }}-1"></canvas>
+                </div>
+
+                <div class="chart_desc">
+                    <span class="UCL">UCL: </span>
+                    <span class="CL">CL: </span>
+                    <span class="LCL">LCL: </span>
+
+                    <div class="CRITERIA_block">
+                        <span class="CRITERIA_span">CRITERIA:</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="chart_holder">
+                <h1 class="ChartHeading">Moving R chart</h1>
+                <canvas id="MyChart{{ loop.index }}-2"></canvas>
+
+                <div id="add_sigma_buts{{ loop.index }}-2"></div>
+
+                <div class="chart_desc">
+                    <span class="UCL">UCL: </span>
+                    <span class="CL" >CL: </span>
+                    <span class="LCL">LCL: </span>
+
+                    <div class="CRITERIA_block">
+                        <span class="CRITERIA_span">CRITERIA:</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ========= SAVE ========= -->
+        <div id="SaveChartForm_Block{{ loop.index }}">
+            <form action="/save" method="post" id="save_to_db_form{{ loop.index }}">
+                <input name="identifier"
+                       type="hidden"
+                       value="{{ loop.index }}">
+
+                <input id="save_json{{ loop.index }}"
+                       name="saved_data_json"
+                       type="hidden"
+                       value=""
+                       placeholder="SAVE TO DB">
+
+                <input type="submit" value="save">
+            </form>
+        </div>
+        <!-- ========= COMPARE (OVERLAY CHARTS) ========= -->
+        <div id="OverlayChartForm_Block{{ loop.index }}">
+            <div class="compare_buttons">
+                <div class="first_button_block">
+                    <button id="Overlay_button{{ loop.index }}">Compare (Overlay another chart)</button>
+                </div>
+                <div class="cancel_button_block">
+                    <button id="Overlay_Cancel{{ loop.index }}">Cancel</button>
+                </div>
+            </div>
+
+            <!-- CHARTS OVERLAY -->
+            <form id="OverlayChartForm{{ loop.index }}" action="/overlay" method="post" enctype=multipart/form-data>
+                <input name="identifier"
+                       type="hidden"
+                       value="{{ loop.index }}">
+                <input name="saved_data_json"
+                       type="text"
+                       value=""
+                       hidden>
+                <input name="saved_settings_json"
+                       type="text"
+                       value="{{ settings }}"
+                       hidden>
+
+                <label for="overlay_chart_form_input_card_name{{ loop.index }}"
+                       id="overlay_chart_form_label_card_name{{ loop.index }}">Chart Name</label>
+                <input name="name"
+                       id="overlay_chart_form_input_card_name{{ loop.index }}"
+                       type="text"
+                       placeholder="Card Name"
+                       autocomplete="off"
+                       autofocus required>
+
+                <div class="">
+                    <label for="compare_input_db{{ loop.index }}">from the database</label>
+                    <input name="db"
+                           type="text"
+                           id="compare_input_db{{ loop.index }}">
+                </div>
+
+                <div class="">
+                    <label for="compare_input_file{{ loop.index }}">from a file</label>
+                    <input name="file"
+                           type="file"
+                           id="compare_input_file{{ loop.index }}"
+                           required>
+                </div>
+
+                <input type="submit" value="SUBMIT">
+            </form>
+        </div>
+
+
+        <div id="js_data{{ loop.index }}">{{ js_data }}</div>
+    </div>
+
+    {% endfor %}
+
+    <div id="AddNewChart_Block">
+        <!-- ========= ADD NEW CHART BELOW ========= -->
+        <div id="AddNewChartForm_Block">
+            <div class="addNew_buttons">
+                <div class="first_button_block">
+                    <button id="add_new_chart_button">Add new chart section</button>
+                </div>
+                <div class="cancel_button_block">
+                    <button id="AddNew_Cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ADD NEW CHART FORM BELOW -->
+        <form id="AddNewChartForm" action="/add_another_chart" method="post" enctype="multipart/form-data">
+            <input name="saved_data_json"
+                   type="text"
+                   value=""
+                   hidden>
+            <input name="saved_settings_json"
+                   type="text"
+                   value="{{ settings }}"
+                   hidden>
+
+            <label for="add_new_chart_form_input_card_name"
+                   id="add_new_chart_form_label_card_name">Chart Name</label>
+            <input name="name" id="add_new_chart_form_input_card_name"
+                   type="text"
+                   placeholder="Card Name"
+                   autocomplete="off"
+                   autofocus required>
+
+            <div class="">
+                <label for="add_new_input_db">from the database</label>
+                <input name="db"
+                       type="text"
+                       id="add_new_input_db">
+            </div>
+
+            <div class="">
+                <label for="add_new_input_file">from a file</label>
+                <input name="file"
+                       type="file"
+                       id="add_new_input_file"
+                       required>
+            </div>
+
+            <input type="submit" value="SUBMIT">
+        </form>
+    </div>
+
+    <div id="charts_list">
+        {{chart_list|tojson|safe }}
+    </div>
+</div>
+
+<script src="static/necessary_scripts/config.js"></script>
+<script src="static/node_modules/chart.js/dist/chart.js"></script>
+<script type="module" src="static/ModuleCharts.js"></script>
+
+<div id="json_settings">{{ settings }}</div>
+
+<script src="static/necessary_scripts/index.js"></script>
+<script src="static/necessary_scripts/add_new_card.js"></script>
+<script src="static/necessary_scripts/apply_settings.js"></script>
+
+<script>run();</script>
+<script>
+    const sigma_2_button = document.getElementById('display_2_sigma_button')
+    sigma_2_button.addEventListener('click', add_2_sigma)
+
+</script>
+<script>
+    const sigma_1_button = document.getElementById('display_1_sigma_button')
+    sigma_1_button.addEventListener('click', add_1_sigma)
+</script>
+
+{% endblock %}

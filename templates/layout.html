@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, width=device-width">
+
+    <title>KKSH</title>
+
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+</head>
+<body>
+    <header>
+        <span>SHEWHARTS CHARTS Automated tool</span>
+        <ul class="navbar_list">
+            <li>
+                <a href="/begin">HOME</a>
+            </li>
+            <li>
+                <a href="https://hdr.undp.org/en">All countries HDI Charts</a>
+            </li>
+            <li>
+                <a href="/chart_classifications">Classification</a>
+            </li>
+            <li>
+                <a href="https://hdr.undp.org/en">UN Human Development</a>
+            </li>
+        </ul>
+    </header>
+
+    <main>
+        <aside id="side_panel">
+            <div class="user_account_name">
+                Maksym (authorized)
+            </div>
+            <div class="user_account_button">
+                <a href="/display_user_charts" id="user_display_user_charts_button">To my charts</a>
+                <a href="/send_a_chart" id="user_send_charts_button">Send a chart</a>
+            </div>
+
+            <div class="user_account_logout">
+                <a href="/logout" id="user_logout_button">logout</a>
+            </div>
+        </aside>
+
+        <aside id="main_content">
+            {% block body %} {% endblock %}
+        </aside>
+    </main>
+
+    <footer>
+        <ul class="navbar_list">
+            <li>
+                <h5>May 2022</h5>
+            </li>
+            <li>
+                <h5>Developed by KPI student Maksym Cheipesh</h5>
+            </li>
+            <li>
+                <h5>Developed with <a href="https://www.chartjs.org/">Chart.js</a></h5>
+            </li>
+        </ul>
+    </footer>
+
+    <div class="preloader">
+            <div id="loader"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="static/necessary_scripts/preloader_script.js"></script>
+
+    <script>
+        window.onload = function() {
+            document.body.classList.add('loaded_hiding');
+            window.setTimeout(function() {
+                document.body.classList.add('loaded');
+                document.body.classList.remove('loaded_hiding');
+            }, 500);
+        }
+    </script>
+
+
+</body>
+</html>
+
+

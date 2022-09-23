@@ -1,0 +1,741 @@
+:root {
+    --UCL-color: rgb(5, 2, 200);
+    --SIGMA-2-color: rgb(0,196,255);
+    --CL-color: #c5b500;
+    --LCL-color: rgb(255, 0, 10);
+    --SIGMA-1-color: rgb(255,0,136);
+
+
+    --affirmative-color: lime;
+
+    --main2: burlywood;;
+    --main2-light: #ffe8ca5c;
+
+    --cards_gradient: #ffffff
+}
+
+body {
+    overflow-x: hidden;
+    margin: 0;
+}
+
+input[type=submit] {
+    width: 7.5rem;
+    padding: 0.5rem 0;
+    background-color: #4fbf4f;
+    border: solid 1px black !important;
+    color: white;
+    font-weight: 800;
+}
+
+#begin_page_block {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.begin_part {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#login_form {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+#login_form > a {
+    top: 1px;
+    left: 1px;
+    display: inline-block;
+    padding: 10px;
+    font-size: 16px;
+    color: #111;
+    transition: 0.5s;
+}
+
+.begin_part_title {
+    text-align: center;
+}
+.begin_button {
+    background-color: var(--affirmative-color);
+    color: black;
+    width: 100%;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid;
+    border-radius: 5rem;
+    padding: 5px;
+}
+
+.input-box {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  margin-bottom: 35px;
+}
+
+.input-box input {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: auto;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  font-weight: 300;
+  border: 1px solid #111;
+  background-color: transparent;
+}
+
+.input-box span {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  display: inline-block;
+  padding: 10px;
+  font-size: 16px;
+  color: #111;
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.input-box input:focus ~ span,
+.input-box input:valid ~ span {
+  transform: translate(-9px, -35px);
+  font-size: 14px;
+}
+
+/* === exception === */
+.search_from .input-box {
+    margin-bottom: 0;
+}
+
+.btn-subscribe {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #ad1457;
+  color: #fff;
+}
+
+.btn-subscribe:hover {
+  background-color: #d81b60;
+  cursor: pointer;
+}
+
+
+/* =========== HEADER =========== */
+header {
+    background: linear-gradient(0.5turn, var(--main2), var(--cards_gradient));
+    border-bottom: solid var(--main2);
+    display: flex;
+    align-items: center;
+}
+
+.navbar_list {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+
+    flex: 10 2 auto;
+}
+
+.navbar_list a {
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+
+/* =========== HEADER =========== */
+
+/* =========== MAIN =========== */
+main {
+    /*padding: 2rem 0 0;*/
+
+    height: 100vh;
+
+    display: flex;
+}
+
+#side_panel {
+    flex: 1;
+
+    padding: 2rem 1rem;
+    background-color: var(--main2);
+    border: solid black;
+    border-top: none;
+    border-bottom: none;
+    border-left: none;
+}
+
+.user_account_logout,
+.user_account_name,
+.user_account_button
+{
+    width: 100%;
+    min-height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 1rem 0;
+}
+
+
+.user_account_name {
+    background: whitesmoke;
+}
+.user_account_button {
+    flex-direction: column;
+}
+.user_account_logout {
+    margin-top: 25rem;
+    width: 100%;
+}
+
+#user_logout_button,
+#user_display_user_charts_button,
+#user_send_charts_button {
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    color: black;
+
+    border: solid 2px black;
+
+    padding: 1rem 0;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#user_display_user_charts_button {
+    border-color: white;
+    color: white;
+    background-color: black;
+}
+#user_send_charts_button {
+    background-color: #ffff59;
+}
+
+#main_content {
+    display: flex;
+    flex: 9;
+    width: 100%;
+}
+
+.container {
+    padding: 0 2rem;
+}
+
+/* =========== MAIN =========== */
+
+
+#user_home_tabs {
+    display: flex;
+    width: 100%;
+}
+
+#user_home_tabs > div {
+    flex: 1;
+    padding-top: 5rem;
+}
+
+.optional_input {
+    color: darkred;
+    text-decoration: underline;
+}
+
+
+/* =========== INIT FORM =========== */
+.add_card_form {
+    display: flex;
+    flex-direction: column;
+
+    width: 20rem;
+}
+.add_card_form input {
+    border: solid 2px var(--main2);
+}
+
+[id^=add_card_form_label_file] {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    background-color: var(--main2);
+}
+.add_card_form input[type=file] {
+    display: none;
+}
+
+.build_chart_heading {
+    margin-top: 0;
+}
+#build_chart_from_UN {
+    text-align: end;
+    padding-right: 6rem;
+    margin-top: 5rem;
+}
+
+/* =========== INIT FORM =========== */
+
+
+
+
+
+/* =========== INIT FORM =========== */
+
+table.db_res_table,
+table.db_res_table th,
+table.db_res_table td {
+    border: 4px solid var(--main2);
+}
+
+.card_to_display {
+    width: 25%;
+}
+
+.card_to_display form {
+    display: flex;
+    align-items: center;
+}
+
+.card_to_display form label {
+    min-width: 1.5rem;
+    max-width: 1.5rem;
+    min-height: 1.5rem;
+    max-height: 1.5rem;
+
+    border-radius: 10rem;
+    background-color: var(--affirmative-color);
+    border: solid 1px;
+}
+
+.card_to_display input[type=submit] {
+    display: none;
+}
+
+.all_charts_from_db_block {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    /*flex-direction: column;*/
+    padding: 3rem 2rem;
+}
+.all_charts_from_db_block .db_res_table {
+    width: 100%;
+}
+
+.table_run_cell {
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#charts {
+    overflow-x: scroll;
+}
+#charts_list,
+[id^=js_data],
+[id^=db_cards],
+[id^=json_settings] {
+    display: none;
+}
+
+.user_filename_span {
+    font-size: 1.5rem;
+    color: blue;
+    text-decoration: underline;
+
+    margin-bottom: 2rem;
+}
+
+.charts_wrapper {
+    width: 100%;
+    height: 600px;
+
+
+    display: -webkit-inline-box;
+    /*flex-direction: row;*/
+    /*justify-content: space-evenly;*/
+
+    border: solid 2px red;
+
+    margin: 0;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.chart_holder {
+    width: 60rem;
+    height: 100%;
+    height: auto;
+
+    position: relative;
+    padding: 2rem;
+
+    /*border: dashed 2px blue;*/
+
+    overflow-y: scroll;
+}
+
+.ChartHeading {
+    text-align: center;
+    margin: 0.5rem 0;
+}
+.chart_holder>canvas {
+    width: 100%;
+    height: 100%;
+
+    max-width: 100% !important;
+    max-height: 100% !important;
+}
+
+/* CHART DESCRIPTION */
+
+td.chart_icon {
+    width: 2.5rem;
+    height: 1.5rem;
+}
+td.chart_icon > img {
+    width: 100%;
+    height: 100%;
+
+}
+
+.chart_desc {
+    border: dashed crimson 2px;
+
+    margin: 4rem 0;
+
+    font-size: 2rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.Chart_Name {
+    font-weight: 800;
+    color: blueviolet;
+}
+.CL {
+    color: var(--CL-color);
+}
+.UCL {
+    color: var(--UCL-color);
+}
+.LCL {
+    color: var(--LCL-color);
+}
+
+.CRITERIA_span {
+    font-weight: 900;
+}
+.detected_criteria {
+    color: darkred;
+}
+
+/* ADD NEW */
+
+#AddNewChart_Block {
+    padding: 1rem 0 0;
+    display: flex;
+    justify-content: left;
+}
+
+.addNew_buttons {
+
+}
+.compare_buttons {
+    justify-content: space-between;
+    display: flex;
+    height: 3rem;
+}
+
+.compare_buttons,
+[id^=OverlayChartForm] input[type=submit] {
+    width: 25%;
+}
+
+
+#AddNewChartForm,
+#AddNew_Cancel,
+[id^=Overlay_Cancel],
+[id^=OverlayChartForm] {
+    display: none;
+}
+
+[id^=OverlayChartForm_Block] {
+    display: block;
+}
+
+.first_button_block {
+    flex: 4;
+}
+.cancel_button_block {
+    flex: 1;
+}
+
+
+[id^=Overlay_button],
+[id^=Overlay_Cancel],
+#AddNew_Cancel,
+#add_new_chart_button {
+    font-size: 1rem;
+    text-transform: lowercase;
+    padding: 0.25rem;
+    background-color: red;
+    color: white;
+    border: solid black 1px;
+
+    height: 3rem;
+    width: 15rem;
+}
+
+[id^=Overlay_button],
+#add_new_chart_button {
+    flex: 4;
+}
+
+[id^=Overlay_Cancel],
+#AddNew_Cancel {
+    flex: 1;
+}
+
+#add_new_chart_button {
+    background-color: #00B0E4;
+}
+[id^=Overlay_button] {
+    background-color: orange;
+}
+
+
+
+
+
+
+/* =========== PRELOADER =========== */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #e0e0e0;
+    z-index: 1001;
+}
+
+.loaded_hiding .preloader {
+    transition: 0.3s opacity;
+    opacity: 0;
+}
+
+.loaded .preloader {
+    display: none;
+}
+
+#loader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #2BE32B;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+}
+
+#loader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: rgb(61, 214, 99);
+    -webkit-animation: spin 3s linear infinite;
+    animation: spin 3s linear infinite;
+}
+
+#loader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #5cdf5c;
+    -webkit-animation: spin 1.5s linear infinite;
+    animation: spin 1.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+/* =========== PRELOADER =========== */
+
+
+/* =========== FOOTER =========== */
+footer {
+    border-top: solid var(--main2);
+    background-color: white;
+    background: linear-gradient(0.5turn, var(--main2), var(--cards_gradient));
+
+    /*position: absolute;*/
+    width: 100%;
+    bottom: 0;
+}
+/* =========== FOOTER =========== */
+
+
+
+/* =========== CLASSIFICATION =========== */
+#classification {
+    height: 100%;
+    background-color: var(--main2-light);
+}
+
+.range_box input[type=number] {
+    border: solid 2px var(--main2);
+    padding: 10px;
+}
+.range_box {
+    display: flex;
+    width: 40%;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 2rem;
+}
+.input_range_box {
+    flex: 1;
+}
+
+#period_range_button {
+    padding: 0.5rem 0;
+    background-color: #4fbf4f;
+    border: solid 1px black !important;
+    color: white;
+    font-weight: 800;
+    height: 3rem;
+
+    flex: 2;
+}
+
+
+#display_2_sigma_button,
+#display_1_sigma_button {
+    width: 10rem;
+    height: 4rem;
+}
+
+#display_1_sigma_button {
+    background-color: var(--SIGMA-1-color);
+}
+
+#display_2_sigma_button {
+    background-color: var(--SIGMA-2-color);
+}
+
+
+.chart_class_block_anchor {
+    position: absolute;
+
+    width: 10rem;
+    height: 6rem;
+    border: dashed 1px lightgray;
+    border-radius: 1rem;
+
+    box-shadow: 4px 4px 8px 0 #000000;;
+    background-color: lightgrey;
+    color: black;
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-decoration: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#individual_chart_type {
+    background: linear-gradient(#81f781, var(--cards_gradient));
+    top: 25%;
+    left: 45%;
+}
+#moving_R_chart_type {
+    background: linear-gradient(#f5be79,var(--cards_gradient));
+    top: 30%;
+    left: 15%;
+}
+#average_chart_type {
+    background: linear-gradient(#c6c2cd,var(--cards_gradient));
+    top: 30%;
+    left: 75%;
+}
+#u_chart_type {
+    background: linear-gradient(#ffffb4,var(--cards_gradient));
+    bottom: 25%;
+    right: 35%;
+}
+#c_chart_type {
+    background: linear-gradient(#d7d7d7,var(--cards_gradient));
+    bottom: 5%;
+    right: 5%;
+}
+#p_chart_type {
+    background: linear-gradient(cornflowerblue,var(--cards_gradient));
+    bottom: 5%;
+    left: 15%;
+}
+#pn_chart_type {
+    background: linear-gradient(coral,var(--cards_gradient));
+    bottom: 25%;
+    left: 30%;
+}
+
+/* =========== CLASSIFICATION =========== */
+
+
+
+
+
+.optional_input {
+    position: relative !important;
+    margin-bottom: 2px !important;
+    padding: 5px;
+}

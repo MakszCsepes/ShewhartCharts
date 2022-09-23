@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+
+{% block body%}
+
+<div class="container" id="user_home_tabs">
+
+    <div class="cards" id="existing_cards">
+
+        <!-- SEARCH FOR COUNTRY -->
+        <h2 class="build_chart_heading">Search for a country HDI</h2>
+        <form action="/search_chart" class="search_from" method="get">
+            <div class="input-box">
+                <input type="text" required>
+                <span>Country HDI</span>
+            </div>
+
+            <input type="submit" value="search">
+        </form>
+        
+        <!-- UPLOAD NEW COUNTRY TO THE LIST -->
+        <h2 class="build_chart_heading" id="build_chart_from_UN">Add new country from <a href="https://hdr.undp.org/en/indicators/137506">UNITED NATIONS Human Development Reports</a></h2>
+        <form action="/add_new_country" class="search_from" method="get">
+            <div class="input-box">
+                <input type="text" required>
+                <span>New UN HDI country</span>
+            </div>
+
+            <input type="submit" value="add new HDI">
+        </form>
+
+        <h2>Cards Available</h2>
+        <div id="db_cards">{{ js_data }}</div>
+    </div>
+
+    <div class="add_card">
+        <h2 class="build_chart_heading">Build Сhart: </h2>
+        <form action="/proceed" class="add_card_form" method="post" enctype=multipart/form-data>
+            <div class="input-box">
+                <!-- <label for="add_card_form_input_card_name" id="add_card_form_label_card_name">Card Name</label> -->
+                <input name="name" id="add_card_form_input_card_name" class="input-name" type="text" autocomplete="off" autofocus required>
+                <span>Card Name</span>
+            </div>
+
+            <div class="input-box">
+                <label for="add_card_form_input_file" id="add_card_form_label_file">Upload file with a card</label>
+                <input name="file" id="add_card_form_input_file" type="file" value="+" required>
+            </div>
+
+            <!-- standard values -->
+            <div class="input-box">
+                <input type="number" value="1" class="input-name">
+                <span>standard value (Control Line, CL), <span class="optional_input">(optional)</span></span>
+            </div>
+            <div class="input-box">
+                <input type="number" value="1" class="input-name">
+                <span>Upper Control Limit (UCL), <span class="optional_input">(optional)</span></span>
+            </div>
+            <div class="input-box">
+                <input type="number" value="1" class="input-name">
+                <span>Lower Control Limit (LCL), <span class="optional_input">(optional)</span></span>
+            </div>
+
+            <div class="input-box">
+                <label for="criteria_no_input">Yes</label>
+                <input type="radio" id="criteria_yes_input" name="analyse_criteria" value="1" class="input-name">
+                <label for="criteria_no_input">No</label>
+                <input type="radio" id="criteria_no_input"  name="analyse_criteria" value="1" class="input-name">
+
+                <span>Analyse with criteria <span class="optional_input">(optional)</span></span>
+            </div>
+
+            <input type="submit" value="SUBMIT">
+        </form>
+    </div>
+
+</div>
+
+<script src="static/necessary_scripts/config.js"></script>
+<script src="static/necessary_scripts/display_cards_from_db.js"></script>
+
+{% endblock %}
